@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Status</title>
+</head>
+<body>
+    <h1>Character Status</h1>
+    <!-- 显示 flash 消息 -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- 修炼按钮 -->
+    <form action="{{ url_for('practice', character_id=character.id) }}" method="post">
+        <button type="submit">修炼</button>
+    </form>
+    
+    <!-- 寻找机缘按钮 -->
+    <form action="{{ url_for('find_opportunity', character_id=character.id) }}" method="post">
+        <button type="submit">寻找机缘</button>
+    </form>
+    <!-- 重生按钮 -->
+    <form action="{{ url_for('rebirth', character_id=character.id) }}" method="post">
+        <button type="submit">重生</button>
+    </form>
+
+    <!-- 决斗表单 -->
+    <h2>Challenge another character to a duel</h2>
+    <form action="{{ url_for('duel') }}" method="post">
+        <input type="hidden" name="character_id" value="{{ character.id }}">
+        <label for="opponent_id">Enter Opponent ID:</label>
+        <input type="number" id="opponent_id" name="opponent_id" required>
+        <button type="submit">Duel</button>
+    </form>
+    
+    <p><strong>Name:</strong> {{ character.name }}</p>
+    <p><strong>Spirit Power:</strong> {{ character.spirit_power }}</p>
+    <p><strong>Cultivation Talent:</strong> {{ character.cultivation_talent }}</p>
+    <p><strong>Combat Talent:</strong> {{ character.combat_talent }}</p>
+    <p><strong>Realm:</strong> {{ character.realm }}</p>
+    <p><strong>Practice Count:</strong> {{ character.practice_count }}</p>
+    <p><strong>Rebirth Opportunity:</strong> {{ character.rebirth_opportunity }}</p>
+
+    <a href="{{ url_for('leaderboard') }}">View Leaderboard</a>
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    <a href="{{ url_for('logout') }}">logout</a>
+
+
+</body>
+</html>

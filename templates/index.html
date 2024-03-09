@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberXian Game</title>
+</head>
+<body>
+    <h1>Welcome to CyberXian Game by XiangDuKai</h1>
+    <h2>Login</h2>
+    <form action="{{ url_for('login') }}" method="post">
+        <input type="text" name="name" placeholder="Character Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+    </form>
+    <h3>Create Character</h3>
+    <form action="{{ url_for('create_character') }}" method="post">
+        <input type="text" name="name" placeholder="Character Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Create Character">
+    </form>
+    <a href="{{ url_for('leaderboard') }}">View Leaderboard</a>
+</body>
+</html>
